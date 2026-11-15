@@ -1,0 +1,911 @@
+/* Design tokens: deep harbour green, sand, paper white and a clay accent. */
+:root {
+  --ink: #1f3a34;
+  --sand: #f3ede2;
+  --paper: #fbf9f4;
+  --white: #ffffff;
+  --clay: #b8583a;
+  --driftwood: #6b6259;
+  --line: #d9cfbd;
+  --display: 'Fraunces', Georgia, serif;
+  --body: 'Manrope', system-ui, sans-serif;
+  --radius: 2px;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: var(--body);
+  font-size: 1rem;
+  line-height: 1.6;
+  color: var(--ink);
+  background: var(--paper);
+  overflow-x: hidden; /* prevents horizontal scrolling on small screens */
+}
+
+img {
+  display: block;
+  max-width: 100%;
+  height: auto;
+}
+
+h1,
+h2,
+h3 {
+  font-family: var(--display);
+  font-weight: 400;
+  line-height: 1.15;
+  margin: 0 0 0.5em;
+  color: var(--ink);
+}
+
+h1 { font-size: clamp(2.4rem, 5vw, 3.8rem); }
+h2 { font-size: clamp(1.8rem, 3.5vw, 2.5rem); }
+h3 { font-size: 1.4rem; }
+
+p {
+  margin: 0 0 1em;
+  max-width: 68ch;
+}
+
+a {
+  color: inherit;
+}
+
+button,
+input,
+select,
+textarea {
+  font: inherit;
+}
+
+:focus-visible {
+  outline: 2px solid var(--clay);
+  outline-offset: 3px;
+}
+
+.container {
+  width: min(1120px, 92%);
+  margin-inline: auto;
+}
+
+section {
+  padding-block: clamp(3rem, 7vw, 5rem);
+}
+
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+}
+
+/* Header and navigation */
+.site-header {
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  background: var(--paper);
+  border-bottom: 1px solid var(--line);
+}
+
+.nav-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-block: 1rem;
+}
+
+.brand {
+  font-family: var(--display);
+  font-size: 1.5rem;
+  text-decoration: none;
+  color: var(--ink);
+}
+
+.site-nav {
+  display: flex;
+  gap: 1.5rem;
+}
+
+.nav-link {
+  text-decoration: none;
+  padding-block: 0.25rem;
+  border-bottom: 2px solid transparent;
+}
+
+.nav-link:hover,
+.nav-link.active {
+  border-color: var(--clay);
+}
+
+.menu-toggle {
+  display: none;
+  width: 44px;
+  height: 44px;
+  background: none;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  cursor: pointer;
+}
+
+.bars,
+.bars::before,
+.bars::after {
+  display: block;
+  width: 18px;
+  height: 2px;
+  background: var(--ink);
+}
+
+.bars {
+  position: relative;
+  margin: 0 auto;
+}
+
+.bars::before,
+.bars::after {
+  content: '';
+  position: absolute;
+  left: 0;
+}
+
+.bars::before { top: -6px; }
+.bars::after { top: 6px; }
+
+/* Buttons */
+.button {
+  display: inline-block;
+  padding: 0.85rem 1.4rem;
+  background: var(--ink);
+  color: var(--paper);
+  border: 1px solid var(--ink);
+  border-radius: var(--radius);
+  font-weight: 700;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.button:hover {
+  background: var(--clay);
+  border-color: var(--clay);
+}
+
+.button.ghost {
+  background: transparent;
+  color: var(--ink);
+}
+
+.button.ghost:hover {
+  background: transparent;
+  color: var(--clay);
+}
+
+.button.small {
+  padding: 0.55rem 1rem;
+  font-size: 0.9rem;
+}
+
+.button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+/* Page intro and hero */
+.page-intro {
+  background: var(--sand);
+  padding-block: clamp(2.5rem, 6vw, 4rem);
+}
+
+.page-intro p {
+  color: var(--driftwood);
+  font-size: 1.1rem;
+}
+
+.hero {
+  background: var(--sand);
+  padding-block: clamp(3rem, 8vw, 6rem);
+}
+
+.hero-row {
+  display: grid;
+  grid-template-columns: 1.1fr 0.9fr;
+  gap: 3rem;
+  align-items: center;
+}
+
+.lead {
+  font-size: 1.2rem;
+  color: var(--driftwood);
+}
+
+.actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  margin-top: 1.5rem;
+}
+
+.hero-img {
+  width: 100%;
+  aspect-ratio: 10 / 11;
+  object-fit: cover;
+  border-radius: var(--radius);
+}
+
+/* Shared grids and split layouts */
+.grid {
+  display: grid;
+  gap: 2rem;
+}
+
+.rooms-grid {
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+  margin-top: 2rem;
+}
+
+.split {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 3rem;
+  align-items: center;
+}
+
+.split img {
+  width: 100%;
+  aspect-ratio: 7 / 8;
+  object-fit: cover;
+  border-radius: var(--radius);
+}
+
+.pillars {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 2rem;
+}
+
+.pillar {
+  border-top: 1px solid var(--ink);
+  padding-top: 1rem;
+}
+
+.pillar ul {
+  padding-left: 1.2rem;
+  margin: 0;
+}
+
+/* Room cards */
+.room-card {
+  display: flex;
+  flex-direction: column;
+  background: var(--white);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  overflow: hidden;
+}
+
+.room-image {
+  position: relative;
+}
+
+.room-image img {
+  width: 100%;
+  aspect-ratio: 4 / 3;
+  object-fit: cover;
+}
+
+.fav {
+  position: absolute;
+  top: 0.75rem;
+  right: 0.75rem;
+  width: 40px;
+  height: 40px;
+  border: none;
+  border-radius: 50%;
+  background: var(--paper);
+  color: var(--ink);
+  font-size: 1.2rem;
+  cursor: pointer;
+}
+
+.fav.is-on {
+  color: var(--clay);
+}
+
+.room-body {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  padding: 1.25rem;
+}
+
+.room-meta {
+  font-size: 0.85rem;
+  color: var(--driftwood);
+  margin-bottom: 0.25rem;
+}
+
+.room-foot {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  margin-top: auto;
+}
+
+.price {
+  margin: 0;
+  font-family: var(--display);
+  font-size: 1.3rem;
+}
+
+.price span {
+  font-family: var(--body);
+  font-size: 0.8rem;
+  color: var(--driftwood);
+}
+
+/* Filters */
+.toolbar {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-end;
+  gap: 1.25rem;
+  margin-bottom: 2rem;
+}
+
+.toolbar label {
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+  min-width: 220px;
+  font-size: 0.9rem;
+  font-weight: 700;
+}
+
+.toolbar label.check {
+  flex-direction: row;
+  align-items: center;
+  min-width: auto;
+}
+
+.chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.chip {
+  padding: 0.5rem 0.9rem;
+  background: transparent;
+  color: var(--ink);
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  cursor: pointer;
+}
+
+.chip.is-active {
+  background: var(--ink);
+  color: var(--paper);
+  border-color: var(--ink);
+}
+
+.empty {
+  padding: 2rem 0;
+  color: var(--driftwood);
+}
+
+/* Services */
+.services-list {
+  display: grid;
+  gap: 3rem;
+}
+
+.service-card {
+  display: grid;
+  grid-template-columns: 1fr 1.2fr;
+  gap: 2rem;
+  align-items: center;
+}
+
+.service-card img {
+  width: 100%;
+  aspect-ratio: 4 / 3;
+  object-fit: cover;
+  border-radius: var(--radius);
+}
+
+.service-card:nth-child(even) img {
+  order: 2;
+}
+
+.note-text {
+  font-size: 0.9rem;
+  font-weight: 700;
+  color: var(--clay);
+}
+
+/* Home guest notes accordion */
+.notes .note {
+  border-top: 1px solid var(--line);
+}
+
+.notes h3 {
+  margin: 0;
+}
+
+.note-toggle {
+  width: 100%;
+  padding: 1.1rem 0;
+  background: none;
+  border: none;
+  text-align: left;
+  font-family: var(--display);
+  font-size: 1.4rem;
+  color: var(--ink);
+  cursor: pointer;
+}
+
+.note p {
+  padding-bottom: 1.1rem;
+}
+
+/* Forms, feedback and booking layout */
+input,
+select,
+textarea {
+  width: 100%;
+  padding: 0.7rem 0.8rem;
+  background: var(--white);
+  color: var(--ink);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+}
+
+.toolbar input[type='search'] {
+  width: 100%;
+}
+
+.toolbar label.check input {
+  width: auto;
+}
+
+.form {
+  display: grid;
+  gap: 1.25rem;
+}
+
+.card-form,
+.summary {
+  padding: 2rem;
+  background: var(--white);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+}
+
+.field {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+}
+
+.field label {
+  font-size: 0.95rem;
+  font-weight: 700;
+}
+
+.field.has-error input,
+.field.has-error select,
+.field.has-error textarea {
+  border-color: var(--clay);
+}
+
+.error {
+  margin: 0;
+  font-size: 0.875rem;
+  color: var(--clay);
+}
+
+.form-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+}
+
+.counter {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.counter button {
+  width: 44px;
+  height: 44px;
+  background: none;
+  color: var(--ink);
+  border: 1px solid var(--ink);
+  border-radius: var(--radius);
+  font-size: 1.2rem;
+  cursor: pointer;
+}
+
+.counter button:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+
+.counter output {
+  min-width: 2ch;
+  font-size: 1.1rem;
+  font-weight: 700;
+  text-align: center;
+}
+
+.feedback {
+  margin: 0 0 1.5rem;
+  padding: 1rem 1.25rem;
+  background: var(--sand);
+  border-left: 3px solid var(--ink);
+}
+
+.feedback.is-error {
+  border-color: var(--clay);
+}
+
+.feedback p {
+  margin: 0.25rem 0 0;
+}
+
+.booking-layout,
+.contact-layout {
+  display: grid;
+  grid-template-columns: 1.4fr 1fr;
+  gap: 3rem;
+  align-items: start;
+}
+
+.contact-layout {
+  grid-template-columns: 1fr 1.4fr;
+}
+
+.summary dl {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 0.5rem 1rem;
+  margin: 0 0 1rem;
+}
+
+.summary dt {
+  color: var(--driftwood);
+}
+
+.summary dd {
+  margin: 0;
+  font-weight: 700;
+  text-align: right;
+}
+
+.summary .fine {
+  font-size: 0.875rem;
+  color: var(--driftwood);
+}
+
+.booking-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.booking-list li {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem;
+  padding: 1rem 0;
+  border-top: 1px solid var(--line);
+}
+
+/* Footer */
+.site-footer {
+  padding-block: 3rem;
+  background: var(--ink);
+  color: var(--sand);
+}
+
+.site-footer h1,
+.site-footer h2,
+.site-footer h3 {
+  color: var(--sand);
+}
+
+.site-footer .brand {
+  color: var(--sand);
+  margin-bottom: 0.5rem;
+}
+
+.footer-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 2rem;
+}
+
+.footer-grid p {
+  margin: 0 0 0.5rem;
+}
+
+/* Responsive layout */
+@media (max-width: 900px) {
+  .hero-row,
+  .split,
+  .booking-layout,
+  .contact-layout,
+  .service-card {
+    grid-template-columns: 1fr;
+  }
+
+  .service-card:nth-child(even) img {
+    order: 0;
+  }
+
+  .pillars,
+  .footer-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 760px) {
+  .menu-toggle {
+    display: block;
+  }
+
+  .site-nav {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    flex-direction: column;
+    gap: 0;
+    background: var(--paper);
+    border-bottom: 1px solid var(--line);
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.25s ease;
+  }
+
+  .site-nav.is-open {
+    max-height: 420px;
+  }
+
+  .nav-link {
+    padding: 1rem 4%;
+    border-bottom: 1px solid var(--line);
+  }
+
+  .nav-link.active {
+    color: var(--clay);
+  }
+}
+
+@media (max-width: 560px) {
+  .form-row {
+    grid-template-columns: 1fr;
+  }
+
+  .card-form,
+  .summary {
+    padding: 1.25rem;
+  }
+
+  .toolbar label {
+    min-width: 100%;
+  }
+
+  .rooms-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    transition: none !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* Home search bar: overlaps the bottom of the hero */
+.quick-search {
+  position: relative;
+  z-index: 1;
+  margin-top: -3.5rem;
+}
+
+.search-bar {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr) auto;
+  gap: 1rem;
+  align-items: end;
+  padding: 1.25rem;
+  background: var(--white);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  box-shadow: 0 18px 40px -24px rgba(31, 58, 52, 0.45);
+}
+
+.search-bar label {
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+  font-size: 0.85rem;
+  font-weight: 700;
+}
+
+.search-bar input,
+.search-bar select {
+  padding: 0.7rem 0.8rem;
+}
+
+.search-error {
+  margin-top: 0.5rem;
+}
+
+/* Gentle image zoom when a room card is hovered */
+.room-image {
+  overflow: hidden;
+}
+
+.room-image img {
+  transition: transform 0.6s ease;
+}
+
+.room-card:hover .room-image img {
+  transform: scale(1.04);
+}
+
+@media (max-width: 760px) {
+  .search-bar {
+    grid-template-columns: 1fr;
+  }
+}
+
+
+/* Consistent image and card alignment across the site */
+.hero-row > div,
+.hero-row > img,
+.split > div,
+.split > img {
+  min-width: 0;
+}
+
+.hero-img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  min-height: 360px;
+  max-height: 520px;
+  aspect-ratio: 5 / 4;
+  object-fit: cover;
+  object-position: center;
+}
+
+.rooms-grid {
+  align-items: stretch;
+}
+
+.room-card {
+  min-width: 0;
+  height: 100%;
+}
+
+.room-image {
+  aspect-ratio: 4 / 3;
+  background: var(--sand);
+}
+
+.room-image img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  aspect-ratio: 4 / 3;
+  object-fit: cover;
+  object-position: center;
+}
+
+.room-body {
+  min-height: 245px;
+  align-items: flex-start;
+}
+
+.room-body > h3 {
+  min-height: 1.6em;
+}
+
+.room-body > p:not(.room-meta):not(.price) {
+  flex: 1;
+}
+
+.room-foot {
+  width: 100%;
+}
+
+.service-card {
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1.1fr);
+  min-width: 0;
+}
+
+.service-card > img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  min-height: 250px;
+  max-height: 360px;
+  aspect-ratio: 4 / 3;
+  object-fit: cover;
+  object-position: center;
+}
+
+.service-card > div {
+  min-width: 0;
+  padding-block: 1rem;
+}
+
+.service-card:nth-child(even) > img {
+  order: 2;
+}
+
+.split > img {
+  display: block;
+  width: 100%;
+  max-height: 520px;
+  object-fit: cover;
+  object-position: center;
+}
+
+@media (max-width: 900px) {
+  .hero-img {
+    min-height: 280px;
+    max-height: 420px;
+  }
+
+  .service-card > img {
+    min-height: 240px;
+    max-height: 380px;
+  }
+}
+
+@media (max-width: 760px) {
+  .service-card {
+    gap: 1rem;
+  }
+
+  .service-card:nth-child(even) > img {
+    order: 0;
+  }
+
+  .service-card > img {
+    height: auto;
+    min-height: 0;
+    aspect-ratio: 16 / 10;
+  }
+
+  .room-body {
+    min-height: 0;
+  }
+}
+
+@media (max-width: 560px) {
+  .hero-img {
+    min-height: 0;
+    aspect-ratio: 4 / 3;
+  }
+}
